@@ -1,23 +1,62 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Navbar from "./Navbar";
+import { useState, useEffect } from "react";
 
 function App() {
+  const [src, setSrc] = useState("");
+
+  const submitMethod=(e)=>{
+    console.log(e);
+    console.log("Method call");
+  }
+
+  useEffect(()=>{
+    console.log("src change : "+src);
+  },[src]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar />
+      <br />
+      <div className="container p-2 w-100">
+        <div className="container border rounded p-1 d-flex">
+          <div className="input-group mb-3">
+            {/* Takes input string and is mapped to state=src. Input string in the form xx-yy-zz-aa */}
+            <input
+              type="text"
+              className="form-control"
+              onChange={(e) => {
+                setSrc(e.target.value);
+              }}
+              placeholder="Input String"
+              aria-label="Input String"
+              value={src}
+            />
+            <button
+              className="btn btn-outline-primary"
+              type="button"
+              id="button-clear"
+              onClick={e=>{
+                setSrc("");
+              }}
+            >
+              Clear
+            </button>
+            <button
+              className="btn btn-outline-success"
+              type="button"
+              id="button-add"
+              onClick={(e)=>{submitMethod(e)}}
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div>
+        <h5> {src} </h5>
+      </div>
     </div>
   );
 }
