@@ -1,17 +1,19 @@
 import "./App.css";
 import Navbar from "./Navbar";
+import TableUI from "./TableUI";
 import { useState, useEffect } from "react";
 
 function App() {
   const [src, setSrc] = useState("");
-
+  const [tblData , setTblData] = useState("");
   const submitMethod=(e)=>{
-    console.log(e);
-    console.log("Method call");
+    // console.log(e);
+    // console.log("Method call");
+setTblData(src);
   }
 
   useEffect(()=>{
-    console.log("src change : "+src);
+    // console.log("src change : "+src);
   },[src]);
 
   return (
@@ -28,7 +30,7 @@ function App() {
               onChange={(e) => {
                 setSrc(e.target.value);
               }}
-              placeholder="Input String"
+              placeholder="xx-yy-zz"
               aria-label="Input String"
               value={src}
             />
@@ -55,7 +57,8 @@ function App() {
       </div>
       <br />
       <div>
-        <h5> {src} </h5>
+        {/* <h5> {src} </h5> */}
+        <TableUI userInput={tblData}/>
       </div>
     </div>
   );
